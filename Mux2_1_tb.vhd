@@ -1,0 +1,26 @@
+LIBRARY IEEE;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+ENTITY Mux2_1_tb IS
+END ENTITY;
+
+ARCHITECTURE bench OF Mux2_1_tb IS
+	SIGNAL A,B,S: std_logic_vector(31 DOWNTO 0);
+	SIGNAL COM: std_logic;
+BEGIN
+
+PROCESS
+BEGIN
+A <= X"000000F0";
+B <= X"00200100";
+COM <= '1';
+WAIT FOR 10 NS;
+COM <= '0';
+WAIT FOR 10 NS;
+A <= X"02001001";
+WAIT FOR 10 NS;
+END PROCESS;
+
+mux21: ENTITY work.Mux2_1(behav) GENERIC MAP(32) PORT MAP(A,B,COM,S);
+END ARCHITECTURE;
